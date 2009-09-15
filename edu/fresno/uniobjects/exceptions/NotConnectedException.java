@@ -1,7 +1,5 @@
 package edu.fresno.uniobjects.exceptions;
 
-import edu.fresno.uniobjects.UniDataConnector;
-
 /**
  * Exception that indicates that the {@link UniDataConnector} is not connected.
  * @author Brandon Tilley

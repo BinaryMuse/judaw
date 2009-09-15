@@ -22,7 +22,7 @@ import asjava.uniobjects.UniSessionException;
  * and provides helpful functions for running queries.
  * @author Brandon Tilley
  */
-public class UniDataConnection implements UniDataConnector
+public class UniDataConnection
 {
 	/**
 	 * Name of the UniObjects session COM object
@@ -64,7 +64,6 @@ public class UniDataConnection implements UniDataConnector
 	 * @throws UniConnectionException If there is an issue with the connection
 	 * @throws UniSessionException If there is an issue with the session
 	 */
-	@Override
 	public void connect() throws UniConnectionException, UniSessionException
 	{
 		this.session = new UniSession();
@@ -82,7 +81,6 @@ public class UniDataConnection implements UniDataConnector
 	 * @throws UniSessionException If there is an issue with the session
 	 * @throws NullPointerException If the session is null
 	 */
-	@Override
 	public void disconnect() throws UniSessionException
 	{
 		if(this.session != null)
@@ -103,22 +101,15 @@ public class UniDataConnection implements UniDataConnector
 	 * @throws UniCommandException If there is an issue with the command
 	 * @throws UniSessionException If there is an issue with the session
 	 */
-	@Override
-	public String query(String query) throws NotConnectedException
+	public String query(String query) throws NotConnectedException, UniSessionException, UniCommandException
 	{
 		if(!this.isActive())
 			throw new NotConnectedException();
 		
 		UniCommand command = null;
-		try {
-			command = this.session.command();
-			command.setCommand(query);
-			command.exec();
-		} catch (UniSessionException e) {
-			e.printStackTrace();
-		} catch (UniCommandException e) {
-			e.printStackTrace();
-		}
+		command = this.session.command();
+		command.setCommand(query);
+		command.exec();
 		
 		return command.response().trim();
 	}
@@ -130,8 +121,10 @@ public class UniDataConnection implements UniDataConnector
 	 * @param fields Array of field names to retrieve
 	 * @return A list of {@link FieldSet}s
 	 * @throws NotConnectedException If the UniData connection is not active
+	 * @throws UniCommandException If there is an issue with the command
+	 * @throws UniSessionException If there is an issue with the session
 	 */
-	public List<FieldSet> getFields(String file, String[] fields) throws NotConnectedException
+	public List<FieldSet> getFields(String file, String[] fields) throws NotConnectedException, UniSessionException, UniCommandException
 	{
 		FieldDefinition fd = new FieldDefinition(file);
 		fd.setFieldsByName(fields);
@@ -145,8 +138,10 @@ public class UniDataConnection implements UniDataConnector
 	 * @param fields Map of field names to friendly field names to retrieve, real field name first
 	 * @return A list of {@link FieldSet}s
 	 * @throws NotConnectedException If the UniData connection is not active
+	 * @throws UniCommandException If there is an issue with the command
+	 * @throws UniSessionException If there is an issue with the session
 	 */
-	public List<FieldSet> getFields(String file, Map<String,String> fields) throws NotConnectedException
+	public List<FieldSet> getFields(String file, Map<String,String> fields) throws NotConnectedException, UniSessionException, UniCommandException
 	{
 		FieldDefinition fd = new FieldDefinition(file);
 		fd.setFields(fields);
@@ -160,8 +155,10 @@ public class UniDataConnection implements UniDataConnector
 	 * @param fields List of {@link Field}s that specify what fields to retrieve
 	 * @return A list of {@link FieldSet}s
 	 * @throws NotConnectedException If the UniData connection is not active
+	 * @throws UniCommandException If there is an issue with the command
+	 * @throws UniSessionException If there is an issue with the session
 	 */
-	public List<FieldSet> getFields(String file, List<Field> fields) throws NotConnectedException
+	public List<FieldSet> getFields(String file, List<Field> fields) throws NotConnectedException, UniSessionException, UniCommandException
 	{
 		FieldDefinition fd = new FieldDefinition(file, fields);
 		return getFields(fd);
@@ -174,8 +171,10 @@ public class UniDataConnection implements UniDataConnector
 	 * @param fields Array of {@link Field}s that specify what fields to retrieve
 	 * @return A list of {@link FieldSet}s
 	 * @throws NotConnectedException If the UniData connection is not active
+	 * @throws UniCommandException If there is an issue with the command
+	 * @throws UniSessionException If there is an issue with the session
 	 */
-	public List<FieldSet> getFields(String file, Field[] fields) throws NotConnectedException
+	public List<FieldSet> getFields(String file, Field[] fields) throws NotConnectedException, UniSessionException, UniCommandException
 	{
 		FieldDefinition fd = new FieldDefinition(file);
 		fd.setFields(fields);
@@ -189,8 +188,10 @@ public class UniDataConnection implements UniDataConnector
 	 * @param fieldDefinition The {@link FieldDefinition} that defines the data to retrieve
 	 * @return A list of {@link FieldSet}s
 	 * @throws NotConnectedException If the UniData connection is not active
+	 * @throws UniCommandException If there is an issue with the command
+	 * @throws UniSessionException If there is an issue with the session
 	 */
-	public List<FieldSet> getFields(FieldDefinition fieldDefinition) throws NotConnectedException
+	public List<FieldSet> getFields(FieldDefinition fieldDefinition) throws NotConnectedException, UniSessionException, UniCommandException
 	{
 		String query = fieldDefinition.getQueryString();
 		String result = this.query(query);
