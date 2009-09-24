@@ -14,6 +14,7 @@ import edu.fresno.uniobjects.exceptions.NotConnectedException;
 import asjava.uniclientlibs.UniConnectionException;
 import asjava.uniobjects.UniCommand;
 import asjava.uniobjects.UniCommandException;
+import asjava.uniobjects.UniJava;
 import asjava.uniobjects.UniSession;
 import asjava.uniobjects.UniSessionException;
 
@@ -36,12 +37,16 @@ public class UniDataConnection
 	 * Constant for the UniData database type
 	 */
 	public static final String DBTYPE_UNIDATA = "UNIDATA";
+	/**
+	 * The UniJava object is used to create and destroy sessions.
+	 */
+	public static UniJava UniJava = new UniJava();
 	
 	protected String host;
 	protected String account;
 	protected String username;
 	protected String password;
-	protected UniSession session = new UniSession();
+	protected UniSession session;
 	
 	/**
 	 * Creates the connection object, passing in the connection parameters.
@@ -60,13 +65,14 @@ public class UniDataConnection
 	}
 	
 	/**
-	 * Attempts to connect to the UniData data source.
+	 * Uses <code>UniJava.openSession()</code> to create a new session and
+	 * attempts to connect to the UniData data source.
 	 * @throws UniConnectionException If there is an issue with the connection
 	 * @throws UniSessionException If there is an issue with the session
 	 */
 	public void connect() throws UniConnectionException, UniSessionException
 	{
-		this.session = new UniSession();
+		this.session = UniDataConnection.UniJava.openSession();
 		this.session.setUserName(this.getUsername());
 		this.session.setPassword(this.getPassword());
 		this.session.setHostName(this.getHost());
@@ -77,20 +83,14 @@ public class UniDataConnection
 	}
 
 	/**
-	 * Disconnects from the UniData data source.
+	 * Disconnects from the UniData data source using
+	 * <code>UniJava.closeSession()</code>.
 	 * @throws UniSessionException If there is an issue with the session
 	 * @throws NullPointerException If the session is null
 	 */
 	public void disconnect() throws UniSessionException
 	{
-		if(this.session != null)
-		{
-			this.session.disconnect();
-		}
-		else
-		{
-			throw new NullPointerException();
-		}
+			UniDataConnection.UniJava.closeSession(this.session);
 	}
 
 	/**
@@ -195,7 +195,10 @@ public class UniDataConnection
 	{
 		String query = fieldDefinition.getQueryString();
 		String result = this.query(query);
-		return parseIntoFieldset(result, fieldDefinition);
+		if(result.isEmpty())
+			return null;
+		else
+			return parseIntoFieldset(result, fieldDefinition);
 	}
 	
 	/**
@@ -231,8 +234,6 @@ public class UniDataConnection
 			while(fieldIter.hasNext())
 			{
 				String fieldData = fieldIter.next().trim();
-				if(fieldData.isEmpty())
-					continue;
 				if(i >= fieldDefinition.getFields().size())
 					continue;
 				Field fieldDef = fieldDefinition.getFields().get(i);
