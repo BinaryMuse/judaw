@@ -38,9 +38,14 @@ public class UniDataConnection
 	 */
 	public static final String DBTYPE_UNIDATA = "UNIDATA";
 	/**
+	 * The value mark.
+	 */
+	public static final String VALUE_MARK = "ý";
+	/**
 	 * The UniJava object is used to create and destroy sessions.
 	 */
 	public static UniJava UniJava = new UniJava();
+
 	
 	protected String host;
 	protected String account;
