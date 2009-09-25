@@ -44,7 +44,7 @@ public class UniDataConnection
 	/**
 	 * The UniJava object is used to create and destroy sessions.
 	 */
-	public static UniJava UniJava = new UniJava();
+	protected static UniJava uniJava = new UniJava();
 
 	
 	protected String host;
@@ -70,6 +70,16 @@ public class UniDataConnection
 	}
 	
 	/**
+	 * Retrieves the internal UniJava object that is used to create/destroy sessions,
+	 * etc.
+	 * @return The internal UniJava object
+	 */
+	public static UniJava UniJava()
+	{
+		return UniDataConnection.uniJava;
+	}
+	
+	/**
 	 * Uses <code>UniJava.openSession()</code> to create a new session and
 	 * attempts to connect to the UniData data source.
 	 * @throws UniConnectionException If there is an issue with the connection
@@ -77,7 +87,7 @@ public class UniDataConnection
 	 */
 	public void connect() throws UniConnectionException, UniSessionException
 	{
-		this.session = UniDataConnection.UniJava.openSession();
+		this.session = UniDataConnection.UniJava().openSession();
 		this.session.setUserName(this.getUsername());
 		this.session.setPassword(this.getPassword());
 		this.session.setHostName(this.getHost());
@@ -95,7 +105,7 @@ public class UniDataConnection
 	 */
 	public void disconnect() throws UniSessionException
 	{
-			UniDataConnection.UniJava.closeSession(this.session);
+			UniDataConnection.UniJava().closeSession(this.session);
 	}
 
 	/**
