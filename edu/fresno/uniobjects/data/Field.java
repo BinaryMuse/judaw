@@ -15,17 +15,14 @@ import edu.fresno.uniobjects.UniDataConnection;
  */
 public class Field
 {
-	private String fieldName;
-	private String friendlyName;
-	private String data;
+	protected String fieldName;
+	protected String friendlyName;
+	protected String data;
 	
 	/**
 	 * Create a field with no data
 	 */
-	public Field()
-	{
-		//
-	}
+	public Field(){}
 	
 	/**
 	 * Get the data contained in a field

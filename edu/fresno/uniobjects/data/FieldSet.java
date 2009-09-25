@@ -14,7 +14,7 @@ import edu.fresno.uniobjects.UniDataConnection;
  */
 public class FieldSet
 {
-	private List<Field> fields = new ArrayList<Field>();
+	protected List<Field> fields = new ArrayList<Field>();
 	
 	/**
 	 * Construct a blank FieldSet.
