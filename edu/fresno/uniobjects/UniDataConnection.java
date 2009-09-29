@@ -43,9 +43,11 @@ public class UniDataConnection
 	public static final String VALUE_MARK = "ý";
 	/**
 	 * The UniJava object is used to create and destroy sessions.
+	 * @deprecated As of version 1.3, replaced by getter {@link #UniJava()}
+	 * @see #UniJava()
 	 */
-	protected static UniJava uniJava = new UniJava();
-
+	@Deprecated
+	public static UniJava uniJava = new UniJava();
 	
 	protected String host;
 	protected String account;
@@ -71,7 +73,7 @@ public class UniDataConnection
 	
 	/**
 	 * Retrieves the internal UniJava object that is used to create/destroy sessions,
-	 * etc.
+	 * etc. Added in 1.3 to replace direct access to {@link #uniJava}.
 	 * @return The internal UniJava object
 	 */
 	public static UniJava UniJava()
