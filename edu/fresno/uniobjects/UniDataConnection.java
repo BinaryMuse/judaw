@@ -47,7 +47,7 @@ public class UniDataConnection
 	 * @see #UniJava()
 	 */
 	@Deprecated
-	public static UniJava uniJava = new UniJava();
+	public static UniJava UniJava = new UniJava();
 	
 	protected String host;
 	protected String account;
@@ -73,12 +73,12 @@ public class UniDataConnection
 	
 	/**
 	 * Retrieves the internal UniJava object that is used to create/destroy sessions,
-	 * etc. Added in 1.3 to replace direct access to {@link #uniJava}.
+	 * etc. Added in 1.3 to replace direct access to {@link #UniJava}.
 	 * @return The internal UniJava object
 	 */
 	public static UniJava UniJava()
 	{
-		return UniDataConnection.uniJava;
+		return UniDataConnection.UniJava;
 	}
 	
 	/**
