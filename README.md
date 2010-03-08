@@ -51,7 +51,7 @@ deprecated, and you should use the UniJava() getter instead:
 
     System.out.println("Using UniData SDK version " + ud.UniJava().getVersionNumber());
     System.out.println("Connection number " + ud.UniJava().getNumSessions() +
-        " of " + ud.UniJava.getMaxSessions());
+        " of " + ud.UniJava().getMaxSessions());
 
 Opening a File and Reading a Record
 -----------------------------------
