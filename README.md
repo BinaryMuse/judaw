@@ -20,12 +20,16 @@ A special thanks to Rich Harrington and others from
 [University Web Developers][uwd] for introducing me to the UniObjects API and
 for great initial code posts, which inspired this project.
 
+  [uwd]: http://cuwebd.ning.com/ "University Web Developers"
+
 Documentation
 =============
 
 JUDAW is documented via JavaDoc style comments in the source code.
 HTML documentation built from specific versions of JUDAW can be found
 on the "Downloads" tab of this project's [GitHub home][githome].
+
+  [githome]: http://github.com/BinaryMuse/judaw "JUDAW on GitHub"
 
 Example Code
 ============
@@ -86,6 +90,3 @@ Selecting Data with SELECT and LIST Wrappers
         System.out.println("Last Name: " + set.getFieldByName("LAST.NAME").getData());
         System.out.println("First Name: " + set.getFieldByFriendlyName("fname").getData());
     }
-
-[uwd]: http://cuwebd.ning.com/ "University Web Developers"
-[githome]: http://github.com/BinaryMuse/judaw "JUDAW on GitHub"
