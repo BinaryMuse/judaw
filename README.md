@@ -47,6 +47,7 @@ deprecated, and you should use the UniJava() getter instead:
         " of " + ud.UniJava.getMaxSessions());
 
 Opening a File and Reading a Record
+-----------------------------------
 
     UniSession session = ud.getSession();
     UniFile person = session.open("PERSON");
@@ -55,6 +56,7 @@ Opening a File and Reading a Record
     System.out.println("Last Name: " + person.readNamedField("LAST.NAME"));
 
 Selecting Data with SELECT and LIST Wrappers
+--------------------------------------------
 
     ud.query("SELECT PERSON WITH @ID EQ '0123456''0654321'");
     // A map of Field objects to specify which
