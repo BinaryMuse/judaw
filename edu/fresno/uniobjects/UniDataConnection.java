@@ -40,7 +40,7 @@ public class UniDataConnection
 	/**
 	 * The value mark.
 	 */
-	public static final String VALUE_MARK = "ý";
+	public static final String VALUE_MARK = "Ã½";
 	/**
 	 * The UniJava object is used to create and destroy sessions.
 	 * @deprecated As of version 1.3, replaced by getter {@link #UniJava()}
