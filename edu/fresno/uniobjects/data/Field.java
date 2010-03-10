@@ -1,5 +1,9 @@
 package edu.fresno.uniobjects.data;
 
+/* Copyright (c) 2010, Fresno Pacific University
+   Licensed under the New BSD license; see the LICENSE file for details. */
+
+
 import edu.fresno.uniobjects.UniDataConnection;
 
 /**
