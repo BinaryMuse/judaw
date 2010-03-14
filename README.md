@@ -73,15 +73,12 @@ Opening a File and Reading a Record
     System.out.println("First Name: " + person.readNamedField("FIRST.NAME"));
     System.out.println("Last Name: " + person.readNamedField("LAST.NAME"));
 
-Executing a Simple Command
---------------------------
-
-    String response = ud.query("SELECT PERSON WITH @ID EQ '0123456''0654321'");
-
 Selecting Data with SELECT and LIST Wrappers
 --------------------------------------------
 
-    // A map of Field objects to specify which
+    // Get a working list
+    ud.query("SELECT PERSON WITH @ID EQ '0123456''0654321'");
+    // Create a map of Field objects to specify which
     // fields we wish to retrieve data from:
     Map<String,String> fields = new HashMap<String, String>();
     fields.put("FIRST.NAME", "fname");
