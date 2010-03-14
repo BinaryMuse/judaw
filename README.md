@@ -73,18 +73,27 @@ Opening a File and Reading a Record
     System.out.println("First Name: " + person.readNamedField("FIRST.NAME"));
     System.out.println("Last Name: " + person.readNamedField("LAST.NAME"));
 
+Executing a Simple Command
+--------------------------
+
+    String response = ud.query("SELECT PERSON WITH @ID EQ '0123456''0654321'");
+
 Selecting Data with SELECT and LIST Wrappers
 --------------------------------------------
 
-    ud.query("SELECT PERSON WITH @ID EQ '0123456''0654321'");
     // A map of Field objects to specify which
     // fields we wish to retrieve data from:
     Map<String,String> fields = new HashMap<String, String>();
     fields.put("FIRST.NAME", "fname");
     fields.put("LAST.NAME", "lname");
+    // Note that there are several ways to specify
+    // which fields you wish to retrieve; see
+    // UniDataConnection#getFields
+    
     List<FieldSet> sets = ud.getFields("PERSON", fields);
     if(sets == null)
         System.out.println("No data returned.");
+    
     Iterator<FieldSet> iter = sets.iterator();
     while(iter.hasNext())
     {
@@ -94,6 +103,6 @@ Selecting Data with SELECT and LIST Wrappers
         // Each row is turned into a FieldSet, and each FieldSet contains a number
         // of Fields (based on the second parameter to getFields).
         FieldSet set = iter.next();
-        System.out.println("Last Name: " + set.getFieldByName("LAST.NAME").getData());
         System.out.println("First Name: " + set.getFieldByFriendlyName("fname").getData());
+        System.out.println("Last Name: " + set.getFieldByName("LAST.NAME").getData());
     }
