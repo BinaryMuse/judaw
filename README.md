@@ -10,8 +10,9 @@ Dependencies
 
 Note that the library is dependent on the Java UniObjects SDK located in
 `asjava.zip` from the IBM Developer's Kit (UniDK). This file is included in
-the JUDAW repository in the `deps` directory. The version number for the
-included version of this file is in the `VERSION` file in the same directory.
+the JUDAW repository in the `deps` directory as `asjava.jar`. The version
+number for the included version of this file is in the `VERSION` file in the
+same directory.
 
 Special Thanks
 ==============
