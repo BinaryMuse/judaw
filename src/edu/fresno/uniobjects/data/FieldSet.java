@@ -18,12 +18,12 @@ import edu.fresno.uniobjects.UniDataConnection;
 public class FieldSet
 {
 	protected List<Field> fields = new ArrayList<Field>();
-	
+
 	/**
 	 * Construct a blank FieldSet.
 	 */
 	public FieldSet(){}
-	
+
 	/**
 	 * Construct a FieldSet with a list of {@link Field}s as initial data.
 	 * @param fields List of Fields for initial data.
@@ -32,7 +32,7 @@ public class FieldSet
 	{
 		this.fields = fields;
 	}
-	
+
 	/**
 	 * Add a {@link Field} to the internal List.
 	 * @param field The Field to add
@@ -41,7 +41,7 @@ public class FieldSet
 	{
 		this.fields.add(field);
 	}
-	
+
 	/**
 	 * Find a field by it's real column name in the UniData data source.
 	 * @param name The name of the field to find
@@ -56,10 +56,10 @@ public class FieldSet
 			if(field.getFieldName().equalsIgnoreCase(name))
 				return field;
 		}
-		
+
 		return null;
 	}
-	
+
 	/**
 	 * Find a field by it's user-friendly column name specificed by the user.
 	 * @param name The user-friendly name of the field to find
@@ -74,10 +74,10 @@ public class FieldSet
 			if(field.getFriendlyName().equalsIgnoreCase(name))
 				return field;
 		}
-		
+
 		return null;
 	}
-	
+
 	/**
 	 * Return the {@link Field}s as a real List.
 	 * @return The List of Fields

@@ -13,7 +13,7 @@ import edu.fresno.uniobjects.UniDataConnection;
 public class NotConnectedException extends Exception
 {
 	private static final long serialVersionUID = 2743449941479780185L;
-	
+
 	/**
 	 * Create a default NotConnectedException.
 	 */
@@ -21,7 +21,7 @@ public class NotConnectedException extends Exception
 	{
 		super();
 	}
-	
+
 	/**
 	 * Create a NotConnectedException with a message.
 	 * @param message The message to attach.

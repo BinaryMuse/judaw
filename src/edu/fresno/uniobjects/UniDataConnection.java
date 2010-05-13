@@ -51,13 +51,13 @@ public class UniDataConnection
 	 */
 	@Deprecated
 	public static UniJava UniJava = new UniJava();
-	
+
 	protected String host;
 	protected String account;
 	protected String username;
 	protected String password;
 	protected UniSession session;
-	
+
 	/**
 	 * Creates the connection object, passing in the connection parameters.
 	 * Does not connect to the database, see {@link #connect()}.
@@ -73,7 +73,7 @@ public class UniDataConnection
 		setHost(host);
 		setAccount(account);
 	}
-	
+
 	/**
 	 * Retrieves the internal UniJava object that is used to create/destroy sessions,
 	 * etc. Added in 1.3 to replace direct access to {@link #UniJava}.
@@ -83,7 +83,7 @@ public class UniDataConnection
 	{
 		return UniDataConnection.UniJava;
 	}
-	
+
 	/**
 	 * Uses <code>UniJava.openSession()</code> to create a new session and
 	 * attempts to connect to the UniData data source.
@@ -98,7 +98,7 @@ public class UniDataConnection
 		this.session.setHostName(this.getHost());
 		this.session.setAccountPath(this.getAccount());
 		this.session.setDataSourceType(UniDataConnection.DBTYPE_UNIDATA);
-		
+
 		this.session.connect();
 	}
 
@@ -125,15 +125,15 @@ public class UniDataConnection
 	{
 		if(!this.isActive())
 			throw new NotConnectedException();
-		
+
 		UniCommand command = null;
 		command = this.session.command();
 		command.setCommand(query);
 		command.exec();
-		
+
 		return command.response().trim();
 	}
-	
+
 	/**
 	 * Convenience function for {@link #getFields(FieldDefinition)} without
 	 * having to create a new FieldDefinition.
@@ -150,7 +150,7 @@ public class UniDataConnection
 		fd.setFieldsByName(fields);
 		return getFields(fd);
 	}
-	
+
 	/**
 	 * Convenience function for {@link #getFields(FieldDefinition)} without
 	 * having to create a new FieldDefinition.
@@ -167,7 +167,7 @@ public class UniDataConnection
 		fd.setFields(fields);
 		return getFields(fd);
 	}
-	
+
 	/**
 	 * Convenience function for {@link #getFields(FieldDefinition)} without
 	 * having to create a new FieldDefinition.
@@ -183,7 +183,7 @@ public class UniDataConnection
 		FieldDefinition fd = new FieldDefinition(file, fields);
 		return getFields(fd);
 	}
-	
+
 	/**
 	 * Convenience function for {@link #getFields(FieldDefinition)} without
 	 * having to create a new FieldDefinition.
@@ -200,7 +200,7 @@ public class UniDataConnection
 		fd.setFields(fields);
 		return getFields(fd);
 	}
-	
+
 	/**
 	 * Executes a special LIST query on the UniData data source to
 	 * retrieve certain fields. {@link FieldDefinition} defines which
@@ -220,7 +220,7 @@ public class UniDataConnection
 		else
 			return parseIntoFieldset(result, fieldDefinition);
 	}
-	
+
 	/**
 	 * Given the data from a query() call and a fieldDefinition, this function parses
 	 * the data out into FieldSets for ease-of-use.
@@ -232,9 +232,9 @@ public class UniDataConnection
 	{
 		if(data.trim().isEmpty())
 			return null;
-		
+
 		List<FieldSet> fieldSets = new ArrayList<FieldSet>();
-		
+
 		// Split on rowSeparator to get an array of rows
 		List<String> rows = Arrays.asList(data.split(fieldDefinition.getRowSeparatorRegex()));
 		// For each row, split on fieldSeparator to get an array of fields for that row.
@@ -242,9 +242,9 @@ public class UniDataConnection
 		while(rowIter.hasNext())
 		{
 			String line = rowIter.next().trim();
-			List<String> rowFields = 
+			List<String> rowFields =
 				Arrays.asList(line.split(fieldDefinition.getFieldSeparatorRegex()));
-			
+
 			// For each field in this row, get the field name, friendly name
 			// (if any), and the data, and create a Field item. Add all Fields
 			// into a FieldSet to be added to the return list.
@@ -266,7 +266,7 @@ public class UniDataConnection
 			}
 			fieldSets.add(set);
 		}
-		
+
 		return fieldSets;
 	}
 
@@ -350,7 +350,7 @@ public class UniDataConnection
 	{
 		return this.session;
 	}
-	
+
 	/**
 	 * Determines if the connection is active or not
 	 * @return True if active, false otherwise

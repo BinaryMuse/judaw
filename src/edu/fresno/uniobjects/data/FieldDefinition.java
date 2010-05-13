@@ -26,7 +26,7 @@ public class FieldDefinition
 	protected String fieldSeparatorRegex = "\\|";
 	protected String rowSeparator = "~";
 	protected String rowSeparatorRegex = "~";
-	
+
 	/**
 	 * Construct a new FieldDefinition, specifying only the file.
 	 * @param file The file to pass to the LIST command
@@ -35,7 +35,7 @@ public class FieldDefinition
 	{
 		setFile(file);
 	}
-	
+
 	/**
 	 * Construct a new FieldDefinition, specifying the file and the fields.
 	 * @param file The file to pass to the LIST command
@@ -46,7 +46,7 @@ public class FieldDefinition
 		setFile(file);
 		setFields(fields);
 	}
-	
+
 	/**
 	 * Builds the LIST command required to retrieve the data from the
 	 * data source.
@@ -68,7 +68,7 @@ public class FieldDefinition
 		query.append("ID.SUP HDR.SUP COL.SUP NO.PAGE COUNT.SUP");
 		if(isSelectOnly())
 			query.append(" SELECT.ONLY");
-		
+
 		return query.toString();
 	}
 
@@ -113,10 +113,10 @@ public class FieldDefinition
 			Map.Entry<String,String> pairs = it.next();
 			localFields.add(new Field(pairs.getKey(), pairs.getValue()));
 		}
-		
+
 		setFields(localFields);
 	}
-	
+
 	/**
 	 * Sets the fields to retrieve data from based on a List of {@link Field}s.
 	 * @param fields
@@ -135,7 +135,7 @@ public class FieldDefinition
 		List<String> localFields = Arrays.asList(fields);
 		setFieldsByName(localFields);
 	}
-	
+
 	/**
 	 * Sets the fields to retrieve data from based on a List of field names only.
 	 * @param fields A list of field names
@@ -149,10 +149,10 @@ public class FieldDefinition
 			Field field = new Field((String) it.next(), null);
 			localFields.add(field);
 		}
-		
+
 		setFields(localFields);
 	}
-	
+
 	/**
 	 * Sets the fields to retrieve data from based on an array of Fields.
 	 * @param fields An array of {@link Field}s
@@ -162,7 +162,7 @@ public class FieldDefinition
 		List<Field> localFields = Arrays.asList(fields);
 		setFields(localFields);
 	}
-	
+
 	/**
 	 * Adds a single {@link Field} to the list of fields to retrieve data from.
 	 * @param field

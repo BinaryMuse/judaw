@@ -22,12 +22,12 @@ public class Field
 	protected String fieldName;
 	protected String friendlyName;
 	protected String data;
-	
+
 	/**
 	 * Create a field with no data
 	 */
 	public Field(){}
-	
+
 	/**
 	 * Get the data contained in a field
 	 * @return The data from the UniData data source contained in this field
@@ -58,7 +58,7 @@ public class Field
 		setFieldName(fieldName);
 		setFriendlyName(friendlyName);
 	}
-	
+
 	/**
 	 * Gets the field name.
 	 * @return The field name
@@ -67,7 +67,7 @@ public class Field
 	{
 		return fieldName;
 	}
-	
+
 	/**
 	 * Sets the field name.
 	 * @param fieldName The field name to set
@@ -76,7 +76,7 @@ public class Field
 	{
 		this.fieldName = fieldName;
 	}
-	
+
 	/**
 	 * Gets the user-friendly name for the field.
 	 * @return The user-friendly name for the field
@@ -85,7 +85,7 @@ public class Field
 	{
 		return friendlyName;
 	}
-	
+
 	/**
 	 * Sets the user-friendly field name.
 	 * @param friendlyName The user-friendly field name to set
